@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "790838608651",
+    "project_id": "safedriving-b837c",
+    "storage_bucket": "safedriving-b837c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790838608651:android:5a142caeb0a213173e580e",
+        "android_client_info": {
+          "package_name": "com.example.zholaman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790838608651-9qnse7ad2rbllkn5t0h78raevms0el7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALcFQKleAMiBprWiSuGqS-2dotpkmlxXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790838608651-9qnse7ad2rbllkn5t0h78raevms0el7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
