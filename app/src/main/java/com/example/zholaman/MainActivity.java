@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             txt.setText(date);
         }
 
-        final File file = new File(path, "DC_data.csv");
+        final File file = new File(path, "driver_data.csv");
 
         try {
             if (!file.exists()) {
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
 //                outWriter.append("GPS_Lat, GPS_Long, AX, AY, AZ, GX, GY, GZ\n");
 //                outWriter.close();
-                fOut.write(" AX, AY, AZ, GPS_Lat, GPS_Long, GX, GY, GZ\n".getBytes());
+                fOut.write("AссX, AссY, AссZ, GPS_Lat, GPS_Long, GyroX, GyroY, GyroZ\n".getBytes());
 //                fOut.flush();
                 fOut.close();
 

@@ -18,7 +18,7 @@
             android:id="@+id/emailField"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20dp" />
 
         <EditText
@@ -27,7 +27,7 @@
             android:id="@+id/passField"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20dp" />
 
 
