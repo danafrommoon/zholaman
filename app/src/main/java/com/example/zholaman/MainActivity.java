@@ -20,6 +20,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +35,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private long lastUpdate_gyro = 0;
     private int locationRequestCode = 1000;
     private double wayLatitude = 0.0, wayLongitude = 0.0;
+    public float x, y, z, gx, gy, gz = 0.0F;
     public int i = 0;
     public int c = 0;
     public String fileString = "";
@@ -112,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
-
     public void FileWriters(String str) {
         SimpleDateFormat dateObj = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
@@ -168,6 +176,37 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        }
     }
 
+    public void DatabaseWriter(float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "https://driver-behavior.herokuapp.com/saveData";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("AccX", String.valueOf(ax));
+                params.put("AccY", String.valueOf(ay));
+                params.put("AccZ", String.valueOf(az));
+                params.put("GPS_Long", String.valueOf(g1));
+                params.put("GPS_Lat", String.valueOf(g2));
+                params.put("GyroX", String.valueOf(gx));
+                params.put("GyroY", String.valueOf(gy));
+                params.put("GyroZ", String.valueOf(gz));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
     protected void onPause() {
         super.onPause();
         sensorManagers.unregisterListener(this);
@@ -221,9 +260,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
         if (GSensor.getType() == Sensor.TYPE_GYROSCOPE) {
-            float gx = sensorEvent.values[0];
-            float gy = sensorEvent.values[1];
-            float gz = sensorEvent.values[2];
+            gx = sensorEvent.values[0];
+            gy = sensorEvent.values[1];
+            gz = sensorEvent.values[2];
 
             long currentTime = System.currentTimeMillis();
             if ((currentTime - lastUpdate_gyro > 300)) {
@@ -252,9 +291,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            float x = sensorEvent.values[0];
-            float y = sensorEvent.values[1];
-            float z = sensorEvent.values[2];
+            x = sensorEvent.values[0];
+            y = sensorEvent.values[1];
+            z = sensorEvent.values[2];
 
             long currentTime = System.currentTimeMillis();
 
@@ -281,6 +320,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + "\n";
                     FileWriters(fileString);
+                    DatabaseWriter(x, y, z, wayLongitude, wayLatitude, gx, gy, gz);
                 }
             }
         }
