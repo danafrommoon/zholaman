@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin1">16dp</dimen>
+    <dimen name="fab_margin2">48dp</dimen>
+    <dimen name="fab_margin3">200dp</dimen>
+    <dimen name="fab_margin4">200dp</dimen>
+
+</resources>
