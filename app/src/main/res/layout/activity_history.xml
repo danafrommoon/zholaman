@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title"
+    tools:context=".HistoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="410dp"
+        android:layout_height="175dp"
+        android:background="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="411dp"
+            android:layout_height="85dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iconmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/menu_icon"
+            android:src="@drawable/ic_gg_menu_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,ImageContrastCheck"/>
+
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/inter_light"
+            android:text="@string/smallhistory_text"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bigwelcome_text"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/bigwelcome_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/history_text"
+            android:textColor="@color/title"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateIds,TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/iconsafetyscore2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:contentDescription="@string/percentoverall"
+            android:src="@drawable/ic_group_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.981"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginBottom="232dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/dashboard"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="378dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="0.079">
+        <ImageView
+            android:id="@+id/iconsafetyscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/percentoverall"
+            android:src="@drawable/ic_group_11"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,ImageContrastCheck"
+            tools:layout_editor_absoluteX="324dp" />
+        <ImageView
+            android:id="@+id/iconpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/desc"
+            android:src="@drawable/ic_group_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/startpoint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/home"
+            android:textColor="@color/textbl"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <TextView
+            android:id="@+id/endpoint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/vadodara"
+            android:textColor="@color/textbl"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.239" />
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/_17_june_2021_05_40_pm"
+            android:textColor="#757575"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.945"
+            app:layout_constraintStart_toStartOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="334dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="84dp"
+            android:background="@color/title"
+            app:cardBackgroundColor="@color/main"
+            app:cardCornerRadius="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/aggresivepercent_2"
+                    android:layout_width="83.98dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+
+                    android:gravity="center"
+                    android:text="@string/aggresive_number_1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <TextView
+                    android:id="@+id/breakingnumber_2"
+                    android:layout_width="76dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/breaking_number_1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <TextView
+                    android:id="@+id/speednumber_2"
+                    android:layout_width="85dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/speed_number_1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/distancenumber_2"
+                    android:layout_width="88dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/distance_number_1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="326dp"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="76dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/aggresive"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="83.98dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/breaking"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="85dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/speed"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="85dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/distance"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/phonecall"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="44dp"
+            android:src="@drawable/ic_ellipse_4"
+            android:contentDescription="@string/desc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView12"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/phonemessage"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="14dp"
+            android:src="@drawable/ic_ellipse_4"
+            android:contentDescription="@string/desc"
+            app:layout_constraintBottom_toTopOf="@+id/data"
+            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phonecall" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/communication_by_call"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/check_message"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="378dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_group_11__1_"
+            tools:ignore="ImageContrastCheck"
+            android:contentDescription="@string/desc" />
+
+        <ImageView
+            android:id="@+id/iconpoint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/desc"
+            android:src="@drawable/ic_group_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/startpoint_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/vadodara"
+            android:textColor="@color/textbl"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/iconpoint2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/endpoint_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/home"
+            android:textColor="@color/textbl"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/iconpoint2"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="334dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="84dp"
+            android:background="@color/title"
+            app:cardBackgroundColor="@color/main"
+            app:cardCornerRadius="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/aggresivepercent"
+                    android:layout_width="83.98dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+
+                    android:gravity="center"
+                    android:text="@string/aggresive_number_2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <TextView
+                    android:id="@+id/breakingnumber"
+                    android:layout_width="76dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/breaking_number_2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <TextView
+                    android:id="@+id/speednumber"
+                    android:layout_width="85dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/speed_number_2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/distancenumber"
+                    android:layout_width="88dp"
+                    android:layout_height="51dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/distance_number_2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="326dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="76dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/aggresive"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="83.98dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/breaking"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="85dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/speed"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="85dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/inter"
+
+                    android:gravity="center"
+                    android:text="@string/distance"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
