@@ -116,8 +116,9 @@
             android:contentDescription="@string/percentoverall"
             android:src="@drawable/ic_group_11"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints,ImageContrastCheck"
-            tools:layout_editor_absoluteX="324dp" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="20dp"
+            tools:ignore="MissingConstraints" />
         <ImageView
             android:id="@+id/iconpoint"
             android:layout_width="wrap_content"
