@@ -35,10 +35,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -54,10 +57,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private long lastUpdate = 0;
     private long lastUpdate_gyro = 0;
     private int locationRequestCode = 1000;
-    private double wayLatitude = 0.0, wayLongitude = 0.0;
-    public float x, y, z, gx, gy, gz = 0.0F;
+    private double wayLatitude, wayLongitude;
+    public float x, y, z, gx, gy, gz;
     public int i = 0;
     public int c = 0;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    String currentDateandTime = sdf.format(new Date());
     public String fileString = "";
 
     @Override
@@ -176,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        }
     }
 
-    public void DatabaseWriter(float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz) {
+    public void DatabaseWriter(float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://driver-behavior.herokuapp.com/saveData";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -201,15 +206,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 params.put("GyroX", String.valueOf(gx));
                 params.put("GyroY", String.valueOf(gy));
                 params.put("GyroZ", String.valueOf(gz));
+                params.put("TimeStamp", time);
                 return params;
             }
         };
         requestQueue.add(stringRequest);
     }
 
+    public void GetEndResultOfDriving() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = "https://driver-behavior.herokuapp.com/sendEndResult";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        requestQueue.add(stringRequest);
+
+    }
+
     protected void onPause() {
         super.onPause();
         sensorManagers.unregisterListener(this);
+        GetEndResultOfDriving();
     }
 
     protected void onResume() {
@@ -217,6 +241,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (i == 1) {
             sensorManagers.registerListener(this, senAccelerometor, SensorManager.SENSOR_DELAY_NORMAL);
             sensorManagers.registerListener(this, senGyroscope, SensorManager.SENSOR_DELAY_NORMAL);
+            c = c + 1;
         }
     }
 
@@ -320,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + "\n";
                     FileWriters(fileString);
-                    DatabaseWriter(x, y, z, wayLongitude, wayLatitude, gx, gy, gz);
+                    DatabaseWriter(x, y, z, wayLongitude, wayLatitude, gx, gy, gz, currentDateandTime);
                 }
             }
         }
