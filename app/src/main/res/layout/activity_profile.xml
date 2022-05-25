@@ -7,9 +7,9 @@
     android:background="@color/title"
     tools:context=".ProfileActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="175dp"
         android:background="@color/main"
         android:rotation="0"
@@ -99,12 +99,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="378dp"
         android:layout_height="221dp"
         android:layout_marginTop="208dp"
+        android:layout_marginLeft="15dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
@@ -308,8 +309,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="7dp"
             android:layout_marginBottom="44dp"
-            android:src="@drawable/ic_ellipse_4"
             android:contentDescription="@string/desc"
+            android:src="@drawable/ic_ellipse_4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView12"
             app:layout_constraintStart_toStartOf="parent" />
@@ -320,8 +321,8 @@
             android:layout_height="8dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/ic_ellipse_4"
             android:contentDescription="@string/desc"
+            android:src="@drawable/ic_ellipse_4"
             app:layout_constraintBottom_toTopOf="@+id/data"
             app:layout_constraintEnd_toStartOf="@+id/textView15"
             app:layout_constraintHorizontal_bias="0.774"
