@@ -227,13 +227,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
         requestQueue.add(stringRequest);
-
     }
 
     protected void onPause() {
         super.onPause();
-        sensorManagers.unregisterListener(this);
         GetEndResultOfDriving();
+        sensorManagers.unregisterListener(this);
     }
 
     protected void onResume() {

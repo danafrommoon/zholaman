@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -14,6 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -29,91 +36,57 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HistoryActivity extends AppCompatActivity {
-
-    private ListView listView;
-    private static String url = "https://driver-behavior.herokuapp.com/historyResult";
-
-    ArrayList<HashMap<String, String>> nameList;
-    private ProgressDialog progressDialog;
+    ListView sensorResultList;
+    String url = "https://driver-behavior.herokuapp.com/historyResult";
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        listView = findViewById(R.id.listView);
-        nameList = new ArrayList<>();
-    }
+        sensorResultList = (ListView) findViewById(R.id.sensorList);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
 
-    private class getNames extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPostExecute(Void aVoid){
-            super.onPostExecute(aVoid);
-
-            if(progressDialog.isShowing()){
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                parseJsonData(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
+        });
 
-            ListAdapter listAdapter = new SimpleAdapter(HistoryActivity.this, nameList, R.layout.item, new String[]{"acceleration_rate"}, new int[]{R.id.name});
-            listView.setAdapter(listAdapter);
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = new ProgressDialog(HistoryActivity.this);
-            progressDialog.setMessage("Loading...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Handler handler = new Handler();
-
-            String jsonString = handler.httpServiceCall(url);
-            if (jsonString != null) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonString);
-                    JSONArray dates = jsonObject.getJSONArray("Driver");
-                    for (int i = 0; i <= dates.length(); i++) {
-                        JSONObject jsonObject1 = dates.getJSONObject(i);
-                        String acceleration_rate = jsonObject1.getString("acceleration_rate");
-                        String braking_rate = jsonObject1.getString("braking_rate");
-                        String cornering_rate = jsonObject1.getString("cornering_rate");
-
-                        HashMap<String, String> dataMap = new HashMap<>();
-
-                        dataMap.put("acceleration_rate", acceleration_rate);
-                        dataMap.put("braking_rate", braking_rate);
-                        dataMap.put("cornering_rate", cornering_rate);
-
-                        nameList.add(dataMap);
-                        System.out.println(nameList);
-
-                    }
-                } catch (JSONException e) {
-                    Toast.makeText(HistoryActivity.this, "Json Parsing Error", Toast.LENGTH_SHORT).show();
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "Json Parsing Error", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            } else {
-                Toast.makeText(getApplicationContext(), "Server error", Toast.LENGTH_LONG).show();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Json Parser error", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            return null;
-        }
+        RequestQueue requestQueue = Volley.newRequestQueue(HistoryActivity.this);
+        requestQueue.add(request);
     }
 
+    public void parseJsonData(String jsonString) {
+        try {
+            JSONObject object = new JSONObject(jsonString);
+            JSONArray sensorArray = object.getJSONArray("Driver");
+            ArrayList arrayList = new ArrayList();
+
+            for (int i = 0; i < sensorArray.length(); i++) {
+                JSONObject results = sensorArray.getJSONObject(i);
+                String rating = "Start time: " + results.getString("timestamp_start") + " " + "End time: " + results.getString("timestamp_end") +
+                        "Acceleration rate: " + results.getString("acceleration_rate")
+                        + "\n" + "Braking rate: " + results.getString("braking_rate") +
+                        "\n" + "Cornering rate: " + results.getString("cornering_rate");
+                arrayList.add(rating);
+//                arrayList.add(sensorArray.getString(i));
+            }
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, arrayList);
+            sensorResultList.setAdapter(arrayAdapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        progressDialog.dismiss();
+    }
 }

@@ -3,33 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Student01/StudioProjects/zholaman/app/src/main/res/font/.xml" value="0.1" />
+        <entry key="..\:/Users/Student01/StudioProjects/zholaman/app/src/main/res/layout/activity_history.xml" value="0.22" />
+        <entry key="..\:/Users/Student01/StudioProjects/zholaman/app/src/main/res/layout/activity_profile.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Student01/StudioProjects/zholaman/app/src/main/res/layout/item.xml" value="0.1" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable-v24/ic_icon.xml" value="0.1" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_ant_design_clock_circle_filled.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_arrow___left.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_bi_arrow_down.xml" value="0.1835" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_ellipse_4.xml" value="0.1835" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_frame_4.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_gg_menu_left.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_group_11.xml" value="0.1835" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_group_11__1_.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_group_12.xml" value="0.1835" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_group_3.xml" value="0.1835" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_history__1_.xml" value="0.1845" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_icon.xml" value="0.1845" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_icon_purple.xml" value="0.151" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/ic_rectangle_22.xml" value="0.1845" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/drawable/selector.xml" value="0.1" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/font/.xml" value="0.234375" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_about.xml" value="0.22" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_history.xml" value="0.19519927536231885" />
+        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_about.xml" value="0.1" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_map.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_profile.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_register.xml" value="0.19519927536231885" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/register_window.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/sign_in_window.xml" value="0.19519927536231885" />
-        <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/layout/trip_details.xml" value="0.14719945355191258" />
         <entry key="..\:/Users/dfm/AndroidStudioProjects/ZholAman/app/src/main/res/menu/menu_navigation.xml" value="0.18" />
       </map>
     </option>
