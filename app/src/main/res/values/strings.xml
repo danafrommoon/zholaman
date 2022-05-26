@@ -6,7 +6,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="bigwelcome_text">Welcome, Sahil</string>
+    <string name="bigwelcome_text">Welcome, Talgat</string>
     <string name="welcome_text">Check your Overall Trip Performance</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -48,7 +48,7 @@
     <string name="remember_password">Remember password</string>
     <string name="forget_password">Forget password</string>
     <string name="driver_profile">Driver Profile</string>
-    <string name="fullname_user">Sahil Patel</string>
+    <string name="fullname_user">Talgat Seop</string>
     <string name="user_name_1">sah_pat</string>
     <string name="total_trips_user_1">Total Trips : 4</string>
     <string name="progress_bar_user_1">84%</string>
@@ -56,7 +56,7 @@
     <string name="data_end_trip_1">01 June 2022, 05:40 pm</string>
     <string name="total_alert_trip_1">Total Alerts : 12</string>
     <string name="start_text">Start</string>
-    <string name="creators_text">Version : 1.0.0 Creators: Kozhabai AIda Orunbassarova Aidana Nuraly Marzhan</string>
+    <string name="creators_text">Version : 1.0.0 Creators: Kozhabai Aida Orunbassarova Aidana Nuraly Marzhan</string>
     <string name="total_trip_percent_2">74%</string>
     <string name="time_start_1">05:08 PM</string>
     <string name="time_end_1">05:40 PM</string>
