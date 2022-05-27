@@ -39,13 +39,14 @@ public class HistoryActivity extends AppCompatActivity {
     ListView sensorResultList;
     String url = "https://driver-behavior.herokuapp.com/historyResult";
     ProgressDialog progressDialog;
+//    ArrayList<HashMap<String, String>> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        sensorResultList = (ListView) findViewById(R.id.sensorList);
+        sensorResultList = findViewById(R.id.sensorList);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -75,13 +76,19 @@ public class HistoryActivity extends AppCompatActivity {
 
             for (int i = 0; i < sensorArray.length(); i++) {
                 JSONObject results = sensorArray.getJSONObject(i);
+                String acc_rate = results.getString("acceleration_rate");
                 String rating = "Start time: " + results.getString("timestamp_start") + " " + "End time: " + results.getString("timestamp_end") +
                         "Acceleration rate: " + results.getString("acceleration_rate")
                         + "\n" + "Braking rate: " + results.getString("braking_rate") +
                         "\n" + "Cornering rate: " + results.getString("cornering_rate");
+                HashMap<String, String> sensorsMap = new HashMap<>();
+//                sensorsMap.put("acceleration_rate", acc_rate);
+//                arrayList.add(sensorsMap);
                 arrayList.add(rating);
-//                arrayList.add(sensorArray.getString(i));
             }
+//            ListAdapter listAdapter = new SimpleAdapter(HistoryActivity.this, arrayList,
+//                    R.layout.activity_history, new String[]{"acceleration_rate"}, new int[]{R.id.startpoint});
+//            sensorResultList.setAdapter(listAdapter);
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, arrayList);
             sensorResultList.setAdapter(arrayAdapter);
         } catch (JSONException e) {

@@ -126,60 +126,60 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
-    public void FileWriters(String str) {
-        SimpleDateFormat dateObj = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar calendar = Calendar.getInstance();
-        String date = dateObj.format(calendar.getTime());
-
-
-        File path = new File(Objects.requireNonNull(this.getExternalFilesDir(null)).getAbsolutePath() + "/DC_data");
-
-        if (!path.exists()) {
-            path.mkdirs();
-            TextView txt = (TextView) findViewById(R.id.city);
-            txt.setText(date);
-        }
-
-        final File file = new File(path, "driver_data.csv");
-
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-                FileOutputStream fOut = new FileOutputStream(file, true);
-//                OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
-//                outWriter.append("GPS_Lat, GPS_Long, AX, AY, AZ, GX, GY, GZ\n");
-//                outWriter.close();
-                fOut.write("AссX, AссY, AссZ, GPS_Lat, GPS_Long, GyroX, GyroY, GyroZ\n".getBytes());
-//                fOut.flush();
-                fOut.close();
-
-
-            }
-            FileOutputStream fOut = new FileOutputStream(file, true);
-//            OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
-//            outWriter.append(str);
+//    public void FileWriters(String str) {
+//        SimpleDateFormat dateObj = new SimpleDateFormat("dd/MM/yyyy");
+//        Calendar calendar = Calendar.getInstance();
+//        String date = dateObj.format(calendar.getTime());
 //
-//            outWriter.close();
-            fOut.write(str.getBytes());
-            fOut.flush();
-            fOut.close();
-
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed");
-        }
-
-        fileString = "";
-
-
-//        try {
-//            File file = new File(date + ".csv");
-//            if (!file.exists()){
-//                file.createNewFile();
-//            }
-//        }catch (IOException e){
-//            e.printStackTrace();
+//
+//        File path = new File(Objects.requireNonNull(this.getExternalFilesDir(null)).getAbsolutePath() + "/DC_data");
+//
+//        if (!path.exists()) {
+//            path.mkdirs();
+//            TextView txt = (TextView) findViewById(R.id.city);
+//            txt.setText(date);
 //        }
-    }
+//
+//        final File file = new File(path, "driver_data.csv");
+//
+//        try {
+//            if (!file.exists()) {
+//                file.createNewFile();
+//                FileOutputStream fOut = new FileOutputStream(file, true);
+////                OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
+////                outWriter.append("GPS_Lat, GPS_Long, AX, AY, AZ, GX, GY, GZ\n");
+////                outWriter.close();
+//                fOut.write("AссX, AссY, AссZ, GPS_Lat, GPS_Long, GyroX, GyroY, GyroZ\n".getBytes());
+////                fOut.flush();
+//                fOut.close();
+//
+//
+//            }
+//            FileOutputStream fOut = new FileOutputStream(file, true);
+////            OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
+////            outWriter.append(str);
+////
+////            outWriter.close();
+//            fOut.write(str.getBytes());
+//            fOut.flush();
+//            fOut.close();
+//
+//        } catch (IOException e) {
+//            Log.e("Exception", "File write failed");
+//        }
+//
+//        fileString = "";
+//
+//
+////        try {
+////            File file = new File(date + ".csv");
+////            if (!file.exists()){
+////                file.createNewFile();
+////            }
+////        }catch (IOException e){
+////            e.printStackTrace();
+////        }
+//    }
 
     public void DatabaseWriter(float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -343,7 +343,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     text.setText(sZ);
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + "\n";
-                    FileWriters(fileString);
+//                    FileWriters(fileString);
+                    System.out.println("TIME: " + currentTime);
                     DatabaseWriter(x, y, z, wayLongitude, wayLatitude, gx, gy, gz, currentDateandTime);
                 }
             }
