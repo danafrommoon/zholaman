@@ -1,4 +1,3 @@
-# zholaman
 # ZholAman
 ZholAman: A smartphone app to monitor reckless driving behaviours
 
