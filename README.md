@@ -16,7 +16,7 @@ I identified the major reckless driving behaviours. These are:
  - Sudden acceleration
  - Sharp turning
 
-ZholAman was coded using Android studio which is based on Java and XML. In DriveSafe:
+ZholAman was coded using Android studio which is based on Java and XML. In ZholAman:
  - Accelerometer sensor is used to measure acceleration in 3D space. 
  - Haversine formula is applied to calculate distances and speed from GPS coordinates. 
  - The data collected and stored for later analysis.
