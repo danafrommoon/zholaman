@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,15 +38,22 @@ import java.util.HashMap;
 
 public class HistoryActivity extends AppCompatActivity {
     ListView sensorResultList;
-    String url = "https://driver-behavior.herokuapp.com/historyResult";
     ProgressDialog progressDialog;
-//    ArrayList<HashMap<String, String>> arrayList;
+    TextView name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
+        name = findViewById(R.id.bigwelcome_text);
+        int user_id = 0;
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            user_id = intent.getIntExtra("user_id", 2);
+            System.out.println("Username ID: " + user_id);
+        }
+        String url = String.format("https://driver-behavior.herokuapp.com/history/%s", user_id);
         sensorResultList = findViewById(R.id.sensorList);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -71,24 +79,21 @@ public class HistoryActivity extends AppCompatActivity {
     public void parseJsonData(String jsonString) {
         try {
             JSONObject object = new JSONObject(jsonString);
-            JSONArray sensorArray = object.getJSONArray("Driver");
+            JSONArray sensorArray = object.getJSONArray("User_result");
             ArrayList arrayList = new ArrayList();
+            ArrayList acc_Rate = new ArrayList();
 
             for (int i = 0; i < sensorArray.length(); i++) {
                 JSONObject results = sensorArray.getJSONObject(i);
-                String acc_rate = results.getString("acceleration_rate");
+
                 String rating = "Start time: " + results.getString("timestamp_start") + " " + "End time: " + results.getString("timestamp_end") +
                         "Acceleration rate: " + results.getString("acceleration_rate")
                         + "\n" + "Braking rate: " + results.getString("braking_rate") +
                         "\n" + "Cornering rate: " + results.getString("cornering_rate");
-                HashMap<String, String> sensorsMap = new HashMap<>();
-//                sensorsMap.put("acceleration_rate", acc_rate);
-//                arrayList.add(sensorsMap);
+                String arr_rate = results.getString("acceleration_rate");
+                acc_Rate.add(arr_rate);
                 arrayList.add(rating);
             }
-//            ListAdapter listAdapter = new SimpleAdapter(HistoryActivity.this, arrayList,
-//                    R.layout.activity_history, new String[]{"acceleration_rate"}, new int[]{R.id.startpoint});
-//            sensorResultList.setAdapter(listAdapter);
             ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, arrayList);
             sensorResultList.setAdapter(arrayAdapter);
         } catch (JSONException e) {

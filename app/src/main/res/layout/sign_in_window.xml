@@ -15,9 +15,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailField"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:id="@+id/usernameField"
+            android:hint="Username"
+            android:inputType="text"
             android:textColor="@color/purple_500"
             android:textSize="20dp" />
 

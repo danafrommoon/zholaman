@@ -51,7 +51,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="104dp"
             android:fontFamily="@font/inter_semibold"
-            android:text="@string/bigwelcome_text"
+            android:text="Welcome, name"
             android:textColor="@color/title"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"

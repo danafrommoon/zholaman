@@ -11,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,10 +31,16 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -61,9 +68,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public float x, y, z, gx, gy, gz;
     public int i = 0;
     public int c = 0;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-    String currentDateandTime = sdf.format(new Date());
+    public int user = 0;
     public String fileString = "";
+    public String name = "";
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
+    String currentDateandTime = sdf.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,63 +134,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
     }
 
-
-//    public void FileWriters(String str) {
-//        SimpleDateFormat dateObj = new SimpleDateFormat("dd/MM/yyyy");
-//        Calendar calendar = Calendar.getInstance();
-//        String date = dateObj.format(calendar.getTime());
-//
-//
-//        File path = new File(Objects.requireNonNull(this.getExternalFilesDir(null)).getAbsolutePath() + "/DC_data");
-//
-//        if (!path.exists()) {
-//            path.mkdirs();
-//            TextView txt = (TextView) findViewById(R.id.city);
-//            txt.setText(date);
-//        }
-//
-//        final File file = new File(path, "driver_data.csv");
-//
-//        try {
-//            if (!file.exists()) {
-//                file.createNewFile();
-//                FileOutputStream fOut = new FileOutputStream(file, true);
-////                OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
-////                outWriter.append("GPS_Lat, GPS_Long, AX, AY, AZ, GX, GY, GZ\n");
-////                outWriter.close();
-//                fOut.write("AссX, AссY, AссZ, GPS_Lat, GPS_Long, GyroX, GyroY, GyroZ\n".getBytes());
-////                fOut.flush();
-//                fOut.close();
-//
-//
-//            }
-//            FileOutputStream fOut = new FileOutputStream(file, true);
-////            OutputStreamWriter outWriter = new OutputStreamWriter(fOut);
-////            outWriter.append(str);
-////
-////            outWriter.close();
-//            fOut.write(str.getBytes());
-//            fOut.flush();
-//            fOut.close();
-//
-//        } catch (IOException e) {
-//            Log.e("Exception", "File write failed");
-//        }
-//
-//        fileString = "";
-//
-//
-////        try {
-////            File file = new File(date + ".csv");
-////            if (!file.exists()){
-////                file.createNewFile();
-////            }
-////        }catch (IOException e){
-////            e.printStackTrace();
-////        }
-//    }
-
-    public void DatabaseWriter(float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time) {
+    public void DatabaseWriter(String driving_name, float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time, int user_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "https://driver-behavior.herokuapp.com/saveData";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -198,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
+                params.put("driving_name", driving_name);
                 params.put("AccX", String.valueOf(ax));
                 params.put("AccY", String.valueOf(ay));
                 params.put("AccZ", String.valueOf(az));
@@ -207,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 params.put("GyroY", String.valueOf(gy));
                 params.put("GyroZ", String.valueOf(gz));
                 params.put("TimeStamp", time);
+                params.put("user_id", String.valueOf(user_id));
                 return params;
             }
         };
@@ -215,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void GetEndResultOfDriving() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://driver-behavior.herokuapp.com/sendEndResult";
+        String url = String.format("https://driver-behavior.herokuapp.com/GetDriverLastData/%s/%s", user, name);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -231,7 +186,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     protected void onPause() {
         super.onPause();
-        GetEndResultOfDriving();
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        GetEndResultOfDriving();
+                    }
+                },
+                5000
+        );
         sensorManagers.unregisterListener(this);
     }
 
@@ -240,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (i == 1) {
             sensorManagers.registerListener(this, senAccelerometor, SensorManager.SENSOR_DELAY_NORMAL);
             sensorManagers.registerListener(this, senGyroscope, SensorManager.SENSOR_DELAY_NORMAL);
-            c = c + 1;
         }
     }
 
@@ -248,13 +210,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void GetNewLocation() {
         MyFusedLocationClient.flushLocations();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         MyFusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
@@ -344,8 +299,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + "\n";
 //                    FileWriters(fileString);
-                    System.out.println("TIME: " + currentTime);
-                    DatabaseWriter(x, y, z, wayLongitude, wayLatitude, gx, gy, gz, currentDateandTime);
+                    Intent intent = getIntent();
+                    if (intent.getExtras() != null) {
+                        user = intent.getIntExtra("user_id", 2);
+                        System.out.println("User is this " + user);
+                    } else {
+                        user = 1;
+                    }
+                    name = String.valueOf(user) + currentDateandTime;
+                    Date date = new Date(lastUpdate);
+                    Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String ll_update_time = format.format(date);
+                    DatabaseWriter(name, x, y, z, wayLongitude, wayLatitude, gx, gy, gz, ll_update_time, user);
                 }
             }
         }
