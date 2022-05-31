@@ -40,21 +40,47 @@ public class HistoryActivity extends AppCompatActivity {
     ListView sensorResultList;
     ProgressDialog progressDialog;
     TextView name;
-
+    ArrayList<HashMap<String, String>> sensorsResultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         name = findViewById(R.id.bigwelcome_text);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.profile);
         int user_id = 0;
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             user_id = intent.getIntExtra("user_id", 2);
             System.out.println("Username ID: " + user_id);
         }
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.map:
+                        startActivity(new Intent(getApplicationContext(), MapActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.profile:
+                        return true;
+                    case R.id.about:
+                        startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
         String url = String.format("https://driver-behavior.herokuapp.com/history/%s", user_id);
         sensorResultList = findViewById(R.id.sensorList);
+        sensorsResultList = new ArrayList<>();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -80,22 +106,28 @@ public class HistoryActivity extends AppCompatActivity {
         try {
             JSONObject object = new JSONObject(jsonString);
             JSONArray sensorArray = object.getJSONArray("User_result");
-            ArrayList arrayList = new ArrayList();
-            ArrayList acc_Rate = new ArrayList();
+//            ArrayList arrayList = new ArrayList();
+//            ArrayList acc_Rate = new ArrayList();
 
             for (int i = 0; i < sensorArray.length(); i++) {
                 JSONObject results = sensorArray.getJSONObject(i);
 
-                String rating = "Start time: " + results.getString("timestamp_start") + " " + "End time: " + results.getString("timestamp_end") +
-                        "Acceleration rate: " + results.getString("acceleration_rate")
-                        + "\n" + "Braking rate: " + results.getString("braking_rate") +
-                        "\n" + "Cornering rate: " + results.getString("cornering_rate");
                 String arr_rate = results.getString("acceleration_rate");
-                acc_Rate.add(arr_rate);
-                arrayList.add(rating);
+                String braking_rate = results.getString("braking_rate");
+                String cornering_rate = results.getString("cornering_rate");
+                String t_start = results.getString("timestamp_start");
+
+                HashMap<String, String> sensor = new HashMap<>();
+
+                sensor.put("acceleration_rate", arr_rate);
+                sensor.put("braking_rate", braking_rate);
+                sensor.put("cornering_rate", cornering_rate);
+                sensor.put("timestamp_start", t_start);
+
+                sensorsResultList.add(sensor);
             }
-            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, arrayList);
-            sensorResultList.setAdapter(arrayAdapter);
+            ListAdapter adapter = new SimpleAdapter(HistoryActivity.this, sensorsResultList, R.layout.activity_history, new String[]{"acceleration_rate", "braking_rate", "cornering_rate", "timestamp_start"}, new int[]{R.id.breakingnumber, R.id.aggresivepercent, R.id.speednumber, R.id.data});
+            sensorResultList.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
