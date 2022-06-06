@@ -106,16 +106,14 @@ public class HistoryActivity extends AppCompatActivity {
         try {
             JSONObject object = new JSONObject(jsonString);
             JSONArray sensorArray = object.getJSONArray("User_result");
-//            ArrayList arrayList = new ArrayList();
-//            ArrayList acc_Rate = new ArrayList();
 
             for (int i = 0; i < sensorArray.length(); i++) {
                 JSONObject results = sensorArray.getJSONObject(i);
-
                 String arr_rate = results.getString("acceleration_rate");
                 String braking_rate = results.getString("braking_rate");
                 String cornering_rate = results.getString("cornering_rate");
                 String t_start = results.getString("timestamp_start");
+                String score = results.getString("safety_score");
 
                 HashMap<String, String> sensor = new HashMap<>();
 
@@ -123,10 +121,13 @@ public class HistoryActivity extends AppCompatActivity {
                 sensor.put("braking_rate", braking_rate);
                 sensor.put("cornering_rate", cornering_rate);
                 sensor.put("timestamp_start", t_start);
-
+                sensor.put("safety_score", score);
                 sensorsResultList.add(sensor);
             }
-            ListAdapter adapter = new SimpleAdapter(HistoryActivity.this, sensorsResultList, R.layout.activity_history, new String[]{"acceleration_rate", "braking_rate", "cornering_rate", "timestamp_start"}, new int[]{R.id.breakingnumber, R.id.aggresivepercent, R.id.speednumber, R.id.data});
+            ListAdapter adapter = new SimpleAdapter(HistoryActivity.this, sensorsResultList,
+                    R.layout.activity_list,
+                    new String[]{"acceleration_rate", "braking_rate", "cornering_rate", "timestamp_start", "safety_score"},
+                    new int[]{R.id.breakingnumber, R.id.aggresivepercent, R.id.speednumber, R.id.data, R.id.iconsafetyscore});
             sensorResultList.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

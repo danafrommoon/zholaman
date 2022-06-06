@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, locationRequestCode);
         } else {
-            Toast T = Toast.makeText(getApplicationContext(), "Location & file access Permission Granted", Toast.LENGTH_SHORT);
-            T.show();
+//            Toast T = Toast.makeText(getApplicationContext(), "Location & file access Permission Granted", Toast.LENGTH_SHORT);
+//            T.show();
         }
 
 
@@ -186,16 +186,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     protected void onPause() {
         super.onPause();
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        GetEndResultOfDriving();
-                    }
-                },
-                5000
-        );
         sensorManagers.unregisterListener(this);
+        GetEndResultOfDriving();
     }
 
     protected void onResume() {

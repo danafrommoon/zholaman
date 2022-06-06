@@ -18,14 +18,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <ImageView
+        <TextView
             android:id="@+id/iconsafetyscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:contentDescription="@string/percentoverall"
-            android:src="@drawable/ic_group_11"
+            android:textColor="@color/textbl"
+            android:textSize="12sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -160,7 +161,7 @@
                     android:fontFamily="@font/inter"
 
                     android:gravity="center"
-                    android:text="@string/breaking"
+                    android:text="Acceleration"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
                     tools:ignore="TextContrastCheck" />
@@ -173,7 +174,7 @@
                     android:fontFamily="@font/inter"
 
                     android:gravity="center"
-                    android:text="@string/aggresive"
+                    android:text="Braking"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
                     tools:ignore="TextContrastCheck" />
@@ -186,7 +187,7 @@
                     android:fontFamily="@font/inter"
 
                     android:gravity="center"
-                    android:text="@string/speed"
+                    android:text="Cornering"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
                     tools:ignore="TextContrastCheck" />
