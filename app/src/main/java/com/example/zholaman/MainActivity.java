@@ -11,7 +11,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView GPS_loc;
     private FusedLocationProviderClient MyFusedLocationClient;
 
+
     private long lastUpdate = 0;
     private long lastUpdate_gyro = 0;
     private int locationRequestCode = 1000;
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -132,6 +136,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 onPause();
             }
         });
+        Switch dev = (Switch) findViewById(R.id.sw_dev);
+        dev.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+              i = 1;
+              onShow();
+            } else {
+              i = 0;
+                onHide();
+            }
+        });
+    }
+
+    protected void onShow() {
+        if(i==1){
+           // carpicture.setVisibility(View.INVISIBLE);
+        }
+    }
+    protected void onHide() {
+        if (i == 0) {
+         //   carpicture.setVisibility(View.VISIBLE);
+        }
     }
 
     public void DatabaseWriter(String driving_name, float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time, int user_id) {

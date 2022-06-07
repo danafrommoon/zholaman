@@ -10,8 +10,8 @@
         android:id="@+id/c_Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:layout_marginBottom="56dp">
+        android:layout_marginBottom="56dp"
+        android:background="#000000">
 
         <Switch
             android:id="@+id/sw"
@@ -24,11 +24,11 @@
             app:layout_constraintVertical_bias="0.956" />
 
         <Switch
-            android:id="@+id/sw_theme"
-            android:layout_width="122dp"
+            android:id="@+id/sw_dev"
+            android:layout_width="150dp"
             android:layout_height="28dp"
             android:buttonTint="#FFFFFF"
-            android:text="Dark mode"
+            android:text="Developer mode"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -359,6 +359,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
