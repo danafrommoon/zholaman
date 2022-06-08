@@ -127,7 +127,7 @@ public class HistoryActivity extends AppCompatActivity {
             ListAdapter adapter = new SimpleAdapter(HistoryActivity.this, sensorsResultList,
                     R.layout.activity_list,
                     new String[]{"acceleration_rate", "braking_rate", "cornering_rate", "timestamp_start", "safety_score"},
-                    new int[]{R.id.breakingnumber, R.id.aggresivepercent, R.id.speednumber, R.id.data, R.id.iconsafetyscore});
+                    new int[]{R.id.breakingnumber, R.id.aggresivepercent, R.id.speednumber, R.id.data, R.id.safety_score2});
             sensorResultList.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();

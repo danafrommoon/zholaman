@@ -15,7 +15,7 @@
         app:cardCornerRadius="15dp">
 
         <TextView
-            android:id="@+id/trip_data_1"
+            android:id="@+id/data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="86dp"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/safety_score_number_1"
+            android:id="@+id/safety_score2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="282dp"
