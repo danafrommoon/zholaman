@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class).putExtra("user_id", user_id));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.map:
+                    case R.id.history:
                         startActivity(new Intent(getApplicationContext(), MapActivity.class));
                         overridePendingTransition(0, 0);
                         return true;

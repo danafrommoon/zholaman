@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_baseline_dashboard"/>
 
     <item
-        android:id="@+id/map"
-        android:title="Map"
-        android:icon="@drawable/ic_baseline_map"/>
+        android:id="@+id/history"
+        android:title="History"
+        android:icon="@drawable/ic_baseline_history"/>
 
     <item
         android:id="@+id/profile"

@@ -48,7 +48,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         name = findViewById(R.id.bigwelcome_text);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.profile);
+        bottomNavigationView.setSelectedItemId(R.id.history);
         int user_id = 0;
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
@@ -61,14 +61,14 @@ public class HistoryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.map:
-                        startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                        overridePendingTransition(0, 0);
+                    case R.id.history:
                         return true;
                     case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.about:
                         startActivity(new Intent(getApplicationContext(), AboutActivity.class));

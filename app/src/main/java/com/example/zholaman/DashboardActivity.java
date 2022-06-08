@@ -1,5 +1,9 @@
 package com.example.zholaman;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -9,19 +13,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,26 +29,14 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class DashboardActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManagers;
     private SensorManager sensorManagerG;
@@ -62,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView GPSy;
     private TextView GPS_loc;
     private FusedLocationProviderClient MyFusedLocationClient;
-
 
     private long lastUpdate = 0;
     private long lastUpdate_gyro = 0;
@@ -82,15 +65,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dashboard);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.home);
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             String passedUsername = intent.getStringExtra("data");
             user_id = intent.getIntExtra("user_id", 2);
         }
         System.out.println("ID: " + user_id);
+
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -116,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-
         MyFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         sensorManagers = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorManagerG = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -124,14 +108,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         senAccelerometor = sensorManagers.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senGyroscope = sensorManagerG.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, locationRequestCode);
         } else {
 //            Toast T = Toast.makeText(getApplicationContext(), "Location & file access Permission Granted", Toast.LENGTH_SHORT);
 //            T.show();
         }
-
 
         Switch toggle = (Switch) findViewById(R.id.sw);
         toggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -143,17 +125,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 onPause();
             }
         });
-
         Switch dev = (Switch) findViewById(R.id.sw_dev);
         dev.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);
 
             }
         });
     }
-
 
     public void DatabaseWriter(String driving_name, float ax, float ay, float az, double g1, double g2, float gx, float gy, float gz, String time, int user_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -219,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
-
     public void GetNewLocation() {
         MyFusedLocationClient.flushLocations();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -238,11 +217,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 fileString = fileString + wayLatitude + ", " + wayLongitude + ", ";
 
-              //  GPS_loc = (TextView) findViewById(R.id.city);
+                //  GPS_loc = (TextView) findViewById(R.id.city);
               //  GPS_loc.setText(String.format(Locale.US, "%s -- %s", wayLatitude, wayLongitude));
             }
         });
     }
+
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
@@ -264,18 +244,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 {
                     GetNewLocation();                                   //Just to update the location ;P
 
-
                     String sX = Float.toString(gx);
-                    TextView text = (TextView) findViewById(R.id.gx);
-                    text.setText(sX);
 
                     String sY = Float.toString(gy);
-                    text = (TextView) findViewById(R.id.gy);
-                    text.setText(sY);
+
 
                     String sZ = Float.toString(gz);
-                    text = (TextView) findViewById(R.id.gz);
-                    text.setText(sZ);
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + ", ";
                 }
@@ -295,20 +269,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 {
                     String sX = Float.toString(x);
-                    TextView text = (TextView) findViewById(R.id.ax);
-                    text.setText(sX);
+
 
                     ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                     int progress = (int) (((-1 * x) + 10) * 10000);
                     progressBar.setProgress(progress);
 
                     String sY = Float.toString(y);
-                    text = (TextView) findViewById(R.id.ay);
-                    text.setText(sY);
 
                     String sZ = Float.toString(z);
-                    text = (TextView) findViewById(R.id.az);
-                    text.setText(sZ);
+
 
                     fileString = fileString + sX + ", " + sY + ", " + sZ + "\n";
 //                    FileWriters(fileString);
@@ -323,11 +293,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     Date date = new Date(lastUpdate);
                     Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String ll_update_time = format.format(date);
-                  DatabaseWriter(name, x, y, z, wayLongitude, wayLatitude, gx, gy, gz, ll_update_time, user);
+                    DatabaseWriter(name, x, y, z, wayLongitude, wayLatitude, gx, gy, gz, ll_update_time, user);
                 }
             }
         }
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {

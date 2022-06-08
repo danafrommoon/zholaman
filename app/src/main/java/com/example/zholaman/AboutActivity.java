@@ -27,7 +27,7 @@ public class AboutActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.map:
+                    case R.id.history:
                         startActivity(new Intent(getApplicationContext(),MapActivity.class));
                         overridePendingTransition(0,0);
                         return true;
