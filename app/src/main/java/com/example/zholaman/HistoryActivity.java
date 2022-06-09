@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,12 +42,14 @@ public class HistoryActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     TextView name;
     ArrayList<HashMap<String, String>> sensorsResultList;
+    CardView toTripDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         name = findViewById(R.id.bigwelcome_text);
+        toTripDetail = findViewById(R.id.cardViewtotrip);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.history);
         int user_id = 0;
@@ -134,4 +137,6 @@ public class HistoryActivity extends AppCompatActivity {
         }
         progressDialog.dismiss();
     }
+
+
 }

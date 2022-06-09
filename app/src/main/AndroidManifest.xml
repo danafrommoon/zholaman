@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZholAman">
         <activity
+            android:name=".TripDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
