@@ -51,8 +51,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     Button btnSignIn, btnRegister;
-    FirebaseAuth auth;
-    FirebaseDatabase db;
+
     DatabaseReference users;
     RelativeLayout root;
     public int user;
@@ -66,9 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = (Button) findViewById(R.id.btnRegister);
         root = (RelativeLayout) findViewById(R.id.root_element);
 
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance();
-        users = db.getReference("Users");
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

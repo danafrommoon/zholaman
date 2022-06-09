@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class).putExtra("user_id", user_id));
+                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class).putExtra("user_id", user_id));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.history:

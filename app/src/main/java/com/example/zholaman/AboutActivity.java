@@ -24,11 +24,11 @@ public class AboutActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.history:
-                        startActivity(new Intent(getApplicationContext(),MapActivity.class));
+                        startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
