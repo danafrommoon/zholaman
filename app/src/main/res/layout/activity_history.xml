@@ -32,6 +32,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/allcardview"
                     android:layout_width="96dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/purple_500"
@@ -49,6 +50,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/weekcardview"
                     android:layout_width="96dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/white"
@@ -66,6 +68,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/monthcardview"
                     android:layout_width="96dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/white"
@@ -83,6 +86,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/yearcardview"
                     android:layout_width="96dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/white"

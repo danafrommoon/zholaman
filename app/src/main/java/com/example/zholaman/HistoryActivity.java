@@ -2,9 +2,11 @@ package com.example.zholaman;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -43,6 +45,8 @@ public class HistoryActivity extends AppCompatActivity {
     TextView name;
     ArrayList<HashMap<String, String>> sensorsResultList;
     CardView toTripDetail;
+    CardView allcardview, weekcardview,monthcardview,yearcardview;
+    TextView all, w, m, y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,73 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         name = findViewById(R.id.bigwelcome_text);
         toTripDetail = findViewById(R.id.cardViewtotrip);
+
+        allcardview = findViewById(R.id.allcardview);
+        weekcardview = findViewById(R.id.weekcardview);
+        monthcardview = findViewById(R.id.monthcardview);
+        yearcardview = findViewById(R.id.yearcardview);
+
+        all = findViewById(R.id.all);
+        w= findViewById(R.id.w);
+        m = findViewById(R.id.m);
+        y = findViewById(R.id.y);
+
+        allcardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allcardview.setCardBackgroundColor(Color.parseColor("#764AF1"));
+                all.setTextColor(Color.parseColor("#ffffff"));
+                weekcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                w.setTextColor(Color.parseColor("#764AF1"));
+                monthcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                m.setTextColor(Color.parseColor("#764AF1"));
+               yearcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                y.setTextColor(Color.parseColor("#764AF1"));
+            }
+        });
+
+        weekcardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                weekcardview.setCardBackgroundColor(Color.parseColor("#764AF1"));
+                w.setTextColor(Color.parseColor("#ffffff"));
+                allcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                all.setTextColor(Color.parseColor("#764AF1"));
+                monthcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                m.setTextColor(Color.parseColor("#764AF1"));
+                yearcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                y.setTextColor(Color.parseColor("#764AF1"));
+            }
+        });
+
+        monthcardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                monthcardview.setCardBackgroundColor(Color.parseColor("#764AF1"));
+                m.setTextColor(Color.parseColor("#ffffff"));
+                allcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                all.setTextColor(Color.parseColor("#764AF1"));
+                weekcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                w.setTextColor(Color.parseColor("#764AF1"));
+                yearcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                y.setTextColor(Color.parseColor("#764AF1"));
+            }
+        });
+
+        yearcardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                yearcardview.setCardBackgroundColor(Color.parseColor("#764AF1"));
+                y.setTextColor(Color.parseColor("#ffffff"));
+                allcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                all.setTextColor(Color.parseColor("#764AF1"));
+                weekcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                w.setTextColor(Color.parseColor("#764AF1"));
+                monthcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                m.setTextColor(Color.parseColor("#764AF1"));
+            }
+        });
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.history);
         int user_id = 0;
@@ -58,6 +129,15 @@ public class HistoryActivity extends AppCompatActivity {
             user_id = intent.getIntExtra("user_id", 2);
             System.out.println("Username ID: " + user_id);
         }
+
+      /*  toTripDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), TripDetailActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });*/
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             @Override
