@@ -45,7 +45,7 @@ public class HistoryActivity extends AppCompatActivity {
     TextView name;
     ArrayList<HashMap<String, String>> sensorsResultList;
     CardView toTripDetail;
-    CardView allcardview, weekcardview,monthcardview,yearcardview;
+    CardView allcardview, weekcardview, monthcardview, yearcardview;
     TextView all, w, m, y;
 
     @Override
@@ -61,7 +61,7 @@ public class HistoryActivity extends AppCompatActivity {
         yearcardview = findViewById(R.id.yearcardview);
 
         all = findViewById(R.id.all);
-        w= findViewById(R.id.w);
+        w = findViewById(R.id.w);
         m = findViewById(R.id.m);
         y = findViewById(R.id.y);
 
@@ -74,7 +74,7 @@ public class HistoryActivity extends AppCompatActivity {
                 w.setTextColor(Color.parseColor("#764AF1"));
                 monthcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
                 m.setTextColor(Color.parseColor("#764AF1"));
-               yearcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                yearcardview.setCardBackgroundColor(Color.parseColor("#ffffff"));
                 y.setTextColor(Color.parseColor("#764AF1"));
             }
         });
@@ -130,13 +130,13 @@ public class HistoryActivity extends AppCompatActivity {
             System.out.println("Username ID: " + user_id);
         }
 
-      /*  toTripDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), TripDetailActivity.class));
-                overridePendingTransition(0, 0);
-            }
-        });*/
+//        toTripDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), TripDetailActivity.class));
+//                overridePendingTransition(0, 0);
+//            }
+//        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 

@@ -18,6 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView name;
     int user_id;
     Button logout;
+    TextView tt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,13 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.profile);
         name = findViewById(R.id.bigwelcome_text);
         logout = findViewById(R.id.button);
+        tt = findViewById(R.id.driver_profiles);
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             String passedUsername = intent.getStringExtra("data");
             user_id = intent.getIntExtra("user_id", 2);
             name.setText(passedUsername);
         }
-
 
 
         System.out.println("ID: " + user_id);
@@ -65,6 +66,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
+        tt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), TripDetailActivity.class));
                 overridePendingTransition(0, 0);
             }
         });

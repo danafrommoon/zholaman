@@ -188,7 +188,7 @@ public class DashboardActivity extends AppCompatActivity implements SensorEventL
     protected void onPause() {
         super.onPause();
         sensorManagers.unregisterListener(this);
-        GetEndResultOfDriving();
+//        GetEndResultOfDriving();
     }
 
     protected void onResume() {
@@ -218,7 +218,7 @@ public class DashboardActivity extends AppCompatActivity implements SensorEventL
                 fileString = fileString + wayLatitude + ", " + wayLongitude + ", ";
 
                 //  GPS_loc = (TextView) findViewById(R.id.city);
-              //  GPS_loc.setText(String.format(Locale.US, "%s -- %s", wayLatitude, wayLongitude));
+                //  GPS_loc.setText(String.format(Locale.US, "%s -- %s", wayLatitude, wayLongitude));
             }
         });
     }
@@ -293,7 +293,7 @@ public class DashboardActivity extends AppCompatActivity implements SensorEventL
                     Date date = new Date(lastUpdate);
                     Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String ll_update_time = format.format(date);
-                    DatabaseWriter(name, x, y, z, wayLongitude, wayLatitude, gx, gy, gz, ll_update_time, user);
+                    DatabaseWriter(name, x, y, z, wayLongitude, wayLatitude, gx, gy, gz, "2022-02-02", 1);
                 }
             }
         }
